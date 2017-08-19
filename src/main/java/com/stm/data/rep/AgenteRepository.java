@@ -1,9 +1,10 @@
-package com.ensat.repositories;
+package com.stm.data.rep;
 
-import com.ensat.entities.Agente;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
+
+import com.stm.data.entity.Agente;
 
 public interface AgenteRepository extends CrudRepository<Agente, Integer> {
 

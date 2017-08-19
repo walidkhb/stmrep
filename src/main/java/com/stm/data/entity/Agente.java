@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ensat.entities;
+package com.stm.data.entity;
 
 import java.io.Serializable;
 import javax.persistence.Basic;

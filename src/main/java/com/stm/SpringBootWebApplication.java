@@ -1,4 +1,4 @@
-package com.ensat;
+package com.stm;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

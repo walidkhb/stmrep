@@ -1,8 +1,9 @@
-package com.ensat.services;
+package com.stm.service;
 
-import com.ensat.entities.Centro;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+
+import com.stm.data.entity.Centro;
 
 /**
  * Created by admin on 05/04/2017.

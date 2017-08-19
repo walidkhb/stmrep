@@ -1,9 +1,9 @@
-package com.ensat.controllers;
+package com.stm.controller;
 
-import com.ensat.entities.Agente;
-import com.ensat.services.AgenteService;
+import com.stm.data.entity.Agente;
+import com.stm.service.AgenteService;
+import com.stm.service.CentroService;
 
-import com.ensat.services.CentroService;
 import net.sf.jasperreports.engine.util.JRLoader;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -166,7 +166,7 @@ public class AgenteController {
         } catch (JRException e) {
             System.out.println(e);
         } catch (IOException ex) {
-            Logger.getLogger(com.ensat.controllers.AgenteController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(com.stm.controller.AgenteController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }

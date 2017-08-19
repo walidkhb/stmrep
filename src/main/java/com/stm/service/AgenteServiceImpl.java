@@ -1,7 +1,8 @@
-package com.ensat.services;
+package com.stm.service;
 
-import com.ensat.entities.Agente;
-import com.ensat.repositories.AgenteRepository;
+import com.stm.data.entity.Agente;
+import com.stm.data.rep.AgenteRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

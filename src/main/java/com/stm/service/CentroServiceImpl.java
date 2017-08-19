@@ -1,7 +1,8 @@
-package com.ensat.services;
+package com.stm.service;
 
-import com.ensat.entities.Centro;
-import com.ensat.repositories.CentroRepository;
+import com.stm.data.entity.Centro;
+import com.stm.data.rep.CentroRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

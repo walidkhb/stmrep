@@ -1,4 +1,4 @@
-package com.ensat.controllers;
+package com.stm.controller;
 
 import org.springframework.data.domain.Page;
 

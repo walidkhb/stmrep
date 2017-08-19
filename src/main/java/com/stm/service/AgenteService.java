@@ -1,8 +1,9 @@
-package com.ensat.services;
+package com.stm.service;
 
-import com.ensat.entities.Agente;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+
+import com.stm.data.entity.Agente;
 
 public interface AgenteService {
 

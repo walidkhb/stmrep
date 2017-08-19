@@ -1,4 +1,4 @@
-package com.ensat.configuration;
+package com.stm.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
