@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.social.facebook.api.Facebook;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -27,12 +27,7 @@ import com.stm.service.UserService;
 @SessionAttributes("redirectAfterConnecting")
 public class ProfileController {
 	
-	private Facebook facebook;
 
-	@Autowired
-	public void setFacebook(Facebook facebook) {
-		this.facebook = facebook;
-	}
 	
 	private UserService userService;
 	
@@ -46,7 +41,7 @@ public class ProfileController {
     	
     	status.setComplete();
     	
-    	model.addAttribute("facebookAuthorized", MyUtil.isAuthorized(facebook));    	
+    
     	model.addAttribute(userService.findOne(userId));
     	
 	  	return "user";
