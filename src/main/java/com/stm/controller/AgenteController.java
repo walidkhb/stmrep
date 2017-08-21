@@ -42,14 +42,7 @@ public class AgenteController {
 
     private AgenteService agenteService;
 
-    @Value("${spring.datasource.url}")
-    private String urldb;
 
-    @Value("${spring.datasource.username}")
-    private String userdb;
-
-    @Value("${spring.datasource.password}")
-    private String passdb;
 
     @Autowired
     CentroService centrosService;
@@ -135,40 +128,6 @@ public class AgenteController {
         return "redirect:/agentes";
     }
 
-    @RequestMapping(value = "/pdf", method = RequestMethod.GET)
-    public @ResponseBody
-    void pdf(HttpServletResponse response) throws SQLException {
-
-        try {
-            /*  Par el caso que tengas que compilar el jrxml, como ya está compilado nada más es cargarlo *****
-           JasperDesign design = JRXmlLoader.load("src/main/resources/reports/obra/obraReport.jrxml");
-           JasperReport report = JasperCompileManager.compileReport(design);
-             */
-            JasperReport report;
-            report = (JasperReport) JRLoader.loadObjectFromFile("src/main/resources/reports/agenteReport.jasper");
-
-            //Map<String, Object> parameterMap = new HashMap<>();
-            //Iterable<Obra> agentes = obraRepository.findAll();
-            //JRDataSource jPDatasource = new JRBeanCollectionDataSource((Collection<Obra>) agentes);
-            //parameterMap.put("datasource", agentes);
-            Connection conn = DriverManager.getConnection(urldb, userdb, passdb);
-            Date date = new Date();
-            DateFormat hourdateFormat = new SimpleDateFormat("dd-MM-yyyy-HH-mm-ss");
-            String fechaActual = hourdateFormat.format(date);
-
-            JasperPrint jasperPrint = JasperFillManager.fillReport(report, new HashMap<>(), conn);
-            response.setContentType("application/x-pdf");
-            response.setHeader("Content-Disposition", "inline; filename=Imprimir-Agentes-" + fechaActual + ".pdf");
-
-            final OutputStream outputStream = response.getOutputStream();
-            JasperExportManager.exportReportToPdfStream(jasperPrint, outputStream);
-
-        } catch (JRException e) {
-            System.out.println(e);
-        } catch (IOException ex) {
-            Logger.getLogger(com.stm.controller.AgenteController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
+   
 
 }

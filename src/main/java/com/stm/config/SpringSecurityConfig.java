@@ -1,5 +1,6 @@
 package com.stm.config;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 
 import org.apache.commons.logging.Log;
@@ -19,6 +20,11 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.RememberMeServices;
 import org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices;
 
+import com.stm.data.entity.Group;
+import com.stm.data.entity.User;
+import com.stm.service.GroupServiceImpl;
+import com.stm.service.UserServiceImpl;
+
 @Configuration
 // http://docs.spring.io/spring-boot/docs/current/reference/html/howto-security.html
 // Switch off the Spring Boot security configuration
@@ -34,6 +40,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Resource
 	private UserDetailsService userService;
     
+	
     @Bean
     public RememberMeServices rememberMeServices() {
     	
@@ -65,8 +72,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/", "/home", "/about").permitAll()
-                .antMatchers("/agente/new/**").hasAnyRole("ADMIN")
-                .antMatchers("/user/**").hasAnyRole("USER")
+                .antMatchers("/admin/**").hasAnyRole("ADMIN")
+                .antMatchers("/home/**").hasAnyRole("USER")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -105,10 +112,13 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
       web.ignoring().antMatchers("/public/**/**/**","/fonts/**");
     }
-    @Autowired
+   @Autowired
     @Override
     protected void configure(AuthenticationManagerBuilder authManagerBuilder) throws Exception {
+	 
+       
         authManagerBuilder.userDetailsService(userService).passwordEncoder(passwordEncoder());
     }
+
 
 }

@@ -21,16 +21,14 @@ public class Group {
 
 	private long id;
 	private String name;
-	private Set<GroupHasService> groupHasServices = new HashSet<GroupHasService>(0);
-	private Set<User> users = new HashSet<User>(0);
+private String role;
 
 	public Group() {
 	}
 
-	public Group(String name, Set<GroupHasService> groupHasServices, Set<User> users) {
+	public Group(String name,String role) {
 		this.name = name;
-		this.groupHasServices = groupHasServices;
-		this.users = users;
+		this.role=role;
 	}
 
 	@Id
@@ -54,22 +52,12 @@ public class Group {
 		this.name = name;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "group")
-	public Set<GroupHasService> getGroupHasServices() {
-		return this.groupHasServices;
+	public String getRole() {
+		return role;
 	}
 
-	public void setGroupHasServices(Set<GroupHasService> groupHasServices) {
-		this.groupHasServices = groupHasServices;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "group")
-	public Set<User> getUsers() {
-		return this.users;
-	}
-
-	public void setUsers(Set<User> users) {
-		this.users = users;
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 }

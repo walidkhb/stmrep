@@ -6,17 +6,20 @@ import java.util.Set;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.stm.data.entity.Company;
 import com.stm.data.entity.Company;
 import com.stm.data.rep.CompanyRepository;
 @Service
 @Transactional(propagation=Propagation.SUPPORTS, readOnly=true)
 public class CompanyServiceImpl implements CompanyService {
 
-	private final Log log = LogFactory.getLog(UserServiceImpl.class);
+	private final Log log = LogFactory.getLog(CompanyServiceImpl.class);
 	private CompanyRepository companyRepository;
 
 	@Autowired
@@ -50,4 +53,31 @@ public class CompanyServiceImpl implements CompanyService {
 		// TODO Auto-generated method stub
 		return companyRepository.findOne(companyId);
 	}
+
+
+
+	@Override
+	public Company getCompanyById(Long id) {
+		// TODO Auto-generated method stub
+		
+		return companyRepository.findOne(id);
+	}
+
+	@Override
+	public void deleteCompany(Long id) {
+		companyRepository.delete(id);		
+	}
+
+	@Override
+	public Page<Company> findAll(Pageable pageable) {
+		// TODO Auto-generated method stub
+		return companyRepository.findAll(pageable);
+	}
+
+	@Override
+	public Iterable<Company> listAllCompanies() {
+		// TODO Auto-generated method stub
+		 return companyRepository.findAll();
+	}
+
 }

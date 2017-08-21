@@ -9,28 +9,28 @@
     <body>
         <div class="container">
             <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
-            <div th:if="${not #lists.isEmpty(agentes)}">
+            <div th:if="${not #lists.isEmpty(users)}">
                 <h2>Listado de Agentes</h2>
                 <table class="table table-striped">
                     <tr>
                         <th>No.</th>
                         <th>Name</th>
-                        <th>Lastname</th>
-                        <th>CI</th>
-                        <th>Centro</th>
+                        <th>UseName</th>
+                        <th>email</th>
+                        <th>Group</th>
                         <th>View</th>
                         <th>Edit</th>
                         <th>Delete</th>
                     </tr>
-                    <tr th:each="agente,iterationStatus : ${agentes}">
+                    <tr th:each="user,iterationStatus : ${users}">
                         <td th:text="${iterationStatus.count + (page.size * (page.number-1))}">No.</td>
-                        <td th:text="${agente.name}">Name</td>
-                        <td th:text="${agente.lastname}">Lastname</td>
-                        <td th:text="${agente.ci}">CI</td>
-                        <td th:text="${agente.centroIdId.name}">Centro</td>
-                        <td><a th:href="${ '/agente/' + agente.id}" class="btn btn-success btn-xs">View</a></td>
-                        <td><a th:href="${'/agente/edit/' + agente.id}" class="btn btn-warning btn-xs">Edit</a></td>
-                        <td><a th:href="${'/agente/delete/' + agente.id}" class="btn btn-danger btn-xs">Delete</a></td>
+                        <td th:text="${user.name}">Name</td>
+                        <td th:text="${user.username}">Lastname</td>
+                        <td th:text="${user.email}">CI</td>
+                        <td th:text="${user.group.name}">Centro</td>
+                        <td><a th:href="${ '/admin/user/' + user.id}" class="btn btn-success btn-xs">View</a></td>
+                        <td><a th:href="${'/admin/user/edit/' + user.id}" class="btn btn-warning btn-xs">Edit</a></td>
+                        <td><a th:href="${'admin/user/delete/' + user.id}" class="btn btn-danger btn-xs">Delete</a></td>
                     </tr>
                 </table>
 
@@ -43,7 +43,7 @@
                             <span class="badge" th:text="${page.lastPage ? page.totalElements : page.size * (page.number-1)+ page.size}"></span> de 
                                 <span class="badge"
                                 th:text="${page.totalElements}"></span>
-                            agentes</p></div>
+                            users</p></div>
                 </div>
 
                 <div class="col-sm-7">

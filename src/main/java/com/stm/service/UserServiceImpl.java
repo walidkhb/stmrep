@@ -2,9 +2,13 @@ package com.stm.service;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -18,6 +22,7 @@ import com.stm.data.rep.UserRepository;
 import com.stm.form.SignupForm;
 import com.stm.form.UserEditForm;
 import com.stm.util.MyUtil;
+import com.stm.data.entity.Group;
 import com.stm.data.entity.User;
 @Service
 @Transactional(propagation=Propagation.SUPPORTS)
@@ -28,12 +33,18 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 	private UserRepository userRepository;
 	private PasswordEncoder passwordEncoder;
 
+	
+	private GroupService groupService;
+	
 	@Autowired
 	public UserServiceImpl(UserRepository userRepository,
-			PasswordEncoder passwordEncoder) {
+			PasswordEncoder passwordEncoder,GroupService groupService) {
 		
 		this.userRepository = userRepository;
 		this.passwordEncoder = passwordEncoder;
+		this.groupService=groupService;
+
+	      
 		
 	}
 
@@ -55,19 +66,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
 	}
 	
-	@Override
-	@Transactional(propagation=Propagation.REQUIRED, readOnly=false)
-	public User signup(SignupForm signupForm) {
-		final User user = new User();
-		user.setEmail(signupForm.getEmail());
-		user.setName(signupForm.getName());
-		user.setUsername(signupForm.getUserName());
-		user.setPassword(passwordEncoder.encode(signupForm.getPassword()));
-		userRepository.save(user);
-        MyUtil.logInUser(user);
-		return user;		
-	}
-
+	
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED, readOnly=false)
 	public void update(long userId, UserEditForm userEditForm) {
@@ -86,6 +85,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 	}
 
 	public void saveUser(User user) {
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		userRepository.save(user);
 	}
 
@@ -107,6 +107,30 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
 	public boolean isUserExist(User user) {
 		return findByName(user.getName()) != null;
+	}
+
+	@Override
+	public Iterable<User> listAllUsers() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public User getUserById(Long id) {
+		// TODO Auto-generated method stub
+		
+		return userRepository.findOne(id);
+	}
+
+	@Override
+	public void deleteUser(Long id) {
+		userRepository.delete(id);		
+	}
+
+	@Override
+	public Page<User> findAll(Pageable pageable) {
+		// TODO Auto-generated method stub
+		return userRepository.findAll(pageable);
 	}
 
 	
