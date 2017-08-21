@@ -80,4 +80,11 @@ public class DriverServiceImpl implements DriverService {
 		 return driverRepository.findAll();
 	}
 
+	@Override
+	public void saveDriver(Driver driver) {
+		// TODO Auto-generated method stub
+		driverRepository.save(driver);
+		
+	}
+
 }
