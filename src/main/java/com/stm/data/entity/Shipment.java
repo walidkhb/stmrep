@@ -31,6 +31,7 @@ public class Shipment {
 	private byte[] recivedWeightReport;
 	private byte[] pickUpWeightReport;
 	private String status;
+	private long id;
 
 	public Shipment() {
 	}
