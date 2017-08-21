@@ -9,7 +9,9 @@ import com.stm.data.entity.Group;
 import com.stm.data.entity.User;
 import com.stm.service.GroupServiceImpl;
 import com.stm.service.UserServiceImpl;
-
+/*
+ * test 1
+ */
 @SpringBootApplication
 public class SpringBootWebApplication {
 
