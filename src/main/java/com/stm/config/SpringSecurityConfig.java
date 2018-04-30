@@ -110,12 +110,12 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
  */
     @Override
     public void configure(WebSecurity web) throws Exception {
-      web.ignoring().antMatchers("/public/**/**/**","/fonts/**");
+      web.ignoring().antMatchers("/public/**/**/**","/fonts/**"+"*.css");
     }
    @Autowired
     @Override
     protected void configure(AuthenticationManagerBuilder authManagerBuilder) throws Exception {
-	 
+	 System.out.println("pass"+passwordEncoder().encode("walid"));
        
         authManagerBuilder.userDetailsService(userService).passwordEncoder(passwordEncoder());
     }
